@@ -1,0 +1,38 @@
+import discord from discord.ext import commands from RodData import rod_data import json
+
+Load or save user data
+
+def get_user_data(user_id): try: with open("user_data.json", "r") as f: data = json.load(f) return data.get(str(user_id), {}) except FileNotFoundError: return {}
+
+def save_user_data(user_id, user_data): try: with open("user_data.json", "r") as f: data = json.load(f) except FileNotFoundError: data = {} data[str(user_id)] = user_data with open("user_data.json", "w") as f: json.dump(data, f, indent=4)
+
+class RodUpgrade(commands.Cog): def init(self, bot): self.bot = bot
+
+@commands.command(name="rodupgrade")
+async def rodupgrade(self, ctx):
+    user_id = ctx.author.id
+    user = get_user_data(user_id)
+
+    current_level = user.get("rod_level", 0)
+    next_level = current_level + 1
+
+    if next_level not in rod_data:
+        return await ctx.send("Your rod is already at the maximum level!")
+
+    rod_info = rod_data[next_level]
+    cost = rod_info["cost"]
+    balance = user.get("balance", 0)
+
+    if balance < cost:
+        return await ctx.send(f"You need ${cost:,} to upgrade your rod.")
+
+    # Deduct cost and upgrade rod
+    user["balance"] = balance - cost
+    user["rod_level"] = next_level
+    user["luck_multiplier"] = rod_info["luck_multiplier"]
+    save_user_data(user_id, user)
+
+    await ctx.send(f"Your rod has been upgraded to level {next_level}! It now gives {rod_info['luck_multiplier'] * 100:.0f}% more luck!")
+
+async def setup(bot): await bot.add_cog(RodUpgrade(bot))
+
