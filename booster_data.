@@ -1,0 +1,87 @@
+# booster_data.py
+
+boosters = [
+    # Luck Potions (Stackable, 30-min duration)
+    {
+        "name": "Luck Potion 1",
+        "price": 3_000,
+        "effect": 0.50,
+        "duration": 30,
+        "type": "luck_potion",
+        "stackable": True
+    },
+    {
+        "name": "Luck Potion 2",
+        "price": 8_000,
+        "effect": 0.75,
+        "duration": 30,
+        "type": "luck_potion",
+        "stackable": True
+    },
+    {
+        "name": "Luck Potion 3",
+        "price": 12_000,
+        "effect": 1.20,
+        "duration": 30,
+        "type": "luck_potion",
+        "stackable": True
+    },
+    {
+        "name": "Luck Potion 4",
+        "price": 17_000,
+        "effect": 1.60,
+        "duration": 30,
+        "type": "luck_potion",
+        "stackable": True
+    },
+
+    # Lucky Baits (One-time use, massive boosts)
+    {
+        "name": "Lucky Bait 1",
+        "price": 15_000,
+        "effect": 4.0,
+        "duration": None,
+        "type": "lucky_bait",
+        "stackable": False
+    },
+    {
+        "name": "Lucky Bait 2",
+        "price": 32_000,
+        "effect": 7.5,
+        "duration": None,
+        "type": "lucky_bait",
+        "stackable": False
+    },
+    {
+        "name": "Lucky Bait 3",
+        "price": 45_000,
+        "effect": 10.0,
+        "duration": None,
+        "type": "lucky_bait",
+        "stackable": False
+    },
+    {
+        "name": "Lucky Bait 4",
+        "price": 150_000,
+        "effect": 100.0,
+        "duration": None,
+        "type": "lucky_bait",
+        "stackable": False
+    },
+    {
+        "name": "Lucky Bait 5",
+        "price": 350_000,
+        "effect": 1000.0,
+        "duration": None,
+        "type": "lucky_bait",
+        "stackable": False
+    },
+    {
+        "name": "Lucky Bait 6",
+        "price": 600_000,
+        "effect": 10000.0,
+        "duration": None,
+        "type": "lucky_bait",
+        "stackable": False
+    }
+]
